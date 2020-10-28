@@ -3,13 +3,49 @@
 
     </head>
     <body>
-        <h1>BMI Calculator 2</h1>
+        <h1>BMI Calculator</h1>
 
-        <p>
-            Calculate my body fat
-        </p>
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
+        <div>
+            <p>Weight (kg)</p>
+            <input type="text" id="weight"/>
+        </div>
+        <div>
+            <p>Height (m)</p>
+            <input type="text" id="height"/>
+        </div>
+
+        <div>
+            <h2>Result: <span id="result"></span></h2>
+        </div>
+
+        <script>
+            function getBmiIndex(weight, height){
+                if(!weight){
+                    return 0;
+                }
+                if(!height){
+                    return 0;
+                }
+                const result =  weight / (height * height);
+                return parseFloat(result).toFixed(2);
+            }
+
+            const weightElement = document.getElementById('weight');
+            weightElement.addEventListener('change', ()=>{
+                calculateWithCurrentValues();
+            });
+
+            const heightElement = document.getElementById('height');
+            heightElement.addEventListener('change', ()=>{
+                calculateWithCurrentValues();
+            });
+
+            function calculateWithCurrentValues(){
+                const resultElement = document.getElementById('result');
+                resultElement.innerHTML = getBmiIndex(weightElement.value, heightElement.value);
+            }
+            
+
+        </script>
     </body>
 </html>
